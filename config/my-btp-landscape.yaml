@@ -1,0 +1,184 @@
+---
+landscape:
+  global_account:
+    subdomain: 41ad29aetrial-ga
+
+  global:
+    org_name: My Corp
+    labels:
+      project: Sales BTP Landscape
+      costcenter: 12345678
+      owner: atash.das@gmail.com
+    services:
+      identity-default-service:
+        service_name: identity
+        plan_name: default
+        app_name: sap-identity-services-onboarding
+      sap-build-apps-free-service:
+        service_name: sap-build-apps
+        plan_name: free
+        app_name: sap-build-apps
+        app_name_override: sap-appgyver-ee
+        amount: 1
+      sap-build-code-free-service:
+        service_name: build-code
+        plan_name: free
+        app_name: build-code
+      build-workzone-standard-service:
+        service_name: SAPLaunchpad
+        plan_name: standard
+        app_name: SAPLaunchpad
+        app_name_override: SAPLaunchpadSMS
+      process-automation-free-service:
+        service_name: process-automation
+        plan_name: free
+        app_name: process-automation
+      transport-management-standard-service:
+        service_name: alm-ts
+        plan_name: lite
+        app_name: alm-ts
+
+  accounts:
+    shared-services:
+      description: Account hosting Shared Services for Landscape
+      role: shared
+      region: us10
+      configure_trust: false
+      has_identity_service: true
+      labels:
+        scope: landscape
+      user_role_assignments:
+        Subaccount Service Administrator:
+          users:
+            - atash.das@gmail.com
+        Destination Administrator:
+          users:
+            - atash.das@gmail.com
+      environments:
+        cloudfoundry:
+          name: cf-shared-services
+          plan_name: trial
+          landscape_label:
+          parameters:
+            instance_name: cf-shared-services-org
+          org:
+            - name: cf-shared-services-org
+          space:
+            - name: shared-services-one
+              org_name: cf-shared-services-org
+              managers:
+                origin: sap.ids
+                users:
+                  - atash.das@gmail.com
+      services:
+        - identity-default-service:
+            parameters: {cloud_service: TEST}
+        - transport-management-standard-service:
+
+  directories:
+    amer:
+      description: Directory for Americas region
+      feature:
+        - DEFAULT
+      labels:
+        scope: Americas operation
+      directories:
+        hr:
+          description: Directory for HR Division
+          feature:
+            - DEFAULT
+          labels:
+            scope: HR operation
+        finance:
+          description: Directory for Finance Division
+          feature:
+            - DEFAULT
+          labels:
+            scope: Finance operation
+        sales:
+          description: Directory for Sales Division
+          feature:
+            - DEFAULT
+          labels:
+            scope: Sales operation
+          accounts:
+            sales-development:
+              description: DEV Environment for Sales Division
+              role: dev
+              region: us10
+              configure_trust_with: shared-services:identity-default-service
+              user_role_assignments:
+                Destination Administrator:
+                  users:
+                    - atash.das@gmail.com
+              services:
+                - sap-build-code-free-service:
+            sales-production:
+              description: PROD Environment for Sales Division
+              role: test-prod
+              region: us10
+              configure_trust_with: shared-services:identity-default-service
+              user_role_assignments:
+                Destination Administrator:
+                  users:
+                    - atash.das@gmail.com
+              environments:
+                cloudfoundry:
+                  name: cf-sales-prod
+                  plan_name: trial
+                  landscape_label:
+                  parameters:
+                    instance_name: cf-sales-prod-org
+                  org:
+                    - name: cf-sales-prod-org
+                      auditors:
+                        origin: sap.ids
+                        users:
+                          - atash.das@gmail.com
+                  space:
+                    - name: sales-prod-one
+                      org_name: cf-sales-prod-org
+                      auditors:
+                        origin: sap.ids
+                        users:
+                          - atash.das@gmail.com
+                      developers:
+                        origin: sap.ids
+                        users:
+                          - atash.das@gmail.com
+                      managers:
+                        origin: sap.ids
+                        users:
+                          - atash.das@gmail.com
+                      supporters:
+                        origin: sap.ids
+                        users:
+                          - atash.das@gmail.com
+              services:
+                - build-workzone-standard-service:
+                    user_role_assignments:
+                      Launchpad_Admin:
+                        users:
+                          - atash.das@gmail.com
+                      Launchpad_Advanced_Theming:
+                        users:
+                          - atash.das@gmail.com
+                      Launchpad_Admin_Read_Only:
+                        users:
+                          - atash.das@gmail.com
+                      Launchpad_External_User:
+                        users:
+                          - atash.das@gmail.com
+                - process-automation-free-service:
+    apac:
+      description: Directory for Asia Pacific region
+      feature:
+        - DEFAULT
+      labels:
+        scope: Asia Pacific operation
+    emea:
+      description: Directory for EMEA region
+      feature:
+        - DEFAULT
+      labels:
+        scope: EMEA operation

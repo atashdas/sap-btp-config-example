@@ -1,7 +1,7 @@
 {
     "landscape": {
         "global_account": {
-            "subdomain": "41ad29aetrial-ga"
+            "subdomain": "<global account subdomain>"
         },
         "global": {
             "org_name": "My Corp",

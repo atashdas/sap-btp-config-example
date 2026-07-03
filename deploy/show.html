@@ -1,0 +1,1083 @@
+<pre># data.btp_globalaccount.this:
+data "btp_globalaccount" "this" {
+    commercial_model  = "Subscription"
+    consumption_based = false
+    contract_status   = "ACTIVE"
+    created_date      = "2026-04-28T10:10:55Z"
+    description       = null
+    geo_access        = "STANDARD"
+    id                = "c37f4d0a-51ee-453a-92cb-ba5b1b0ffddc"
+    last_modified     = "2026-06-14T01:23:43Z"
+    license_type      = "TRIAL"
+    name              = "41ad29aetrial"
+    origin            = null
+    renewal_date      = "2026-06-27T10:10:55Z"
+    state             = "OK"
+    subdomain         = "41ad29aetrial-ga"
+}
+
+
+# module.account_trust_configurations.btp_subaccount_trust_configuration.this["sales-development"]:
+resource "btp_subaccount_trust_configuration" "this" {
+    auto_create_shadow_users = true
+    available_for_user_logon = true
+    description              = "CIS (a626a58ka) Trust Configuration"
+    id                       = "sap.custom"
+    identity_provider        = "a626a58ka.trial-accounts.ondemand.com"
+    link_text                = "My Corp Cloud Identity Service (CIS)"
+    name                     = "CIS (a626a58ka) Trust Configuration"
+    origin                   = "sap.custom"
+    protocol                 = "OpenID Connect"
+    read_only                = false
+    status                   = "active"
+    subaccount_id            = "89e0de7d-d9f1-45dd-81de-4372b7c6aa04"
+    type                     = "Application"
+}
+
+# module.account_trust_configurations.btp_subaccount_trust_configuration.this["sales-production"]:
+resource "btp_subaccount_trust_configuration" "this" {
+    auto_create_shadow_users = true
+    available_for_user_logon = true
+    description              = "CIS (a626a58ka) Trust Configuration"
+    id                       = "sap.custom"
+    identity_provider        = "a626a58ka.trial-accounts.ondemand.com"
+    link_text                = "My Corp Cloud Identity Service (CIS)"
+    name                     = "CIS (a626a58ka) Trust Configuration"
+    origin                   = "sap.custom"
+    protocol                 = "OpenID Connect"
+    read_only                = false
+    status                   = "active"
+    subaccount_id            = "05443b24-09ca-4539-93c5-a8568a929457"
+    type                     = "Application"
+}
+
+
+# module.cloudfoundry.data.btp_subaccount_environments.all["sales-production:cf-sales-prod"]:
+data "btp_subaccount_environments" "all" {
+    id            = "05443b24-09ca-4539-93c5-a8568a929457"
+    subaccount_id = "05443b24-09ca-4539-93c5-a8568a929457"
+    values        = [
+        {
+            availability_level   = "ACTIVE"
+            description          = "Create organization in cloud foundry - trial based"
+            environment_type     = "cloudfoundry"
+            landscape_label      = "cf-us10-001"
+            plan_name            = "trial"
+            plan_updateable      = false
+            schema_create        = jsonencode(
+                {
+                    parameters = {
+                        _show_form_view = true
+                        properties      = {
+                            instance_name = {
+                                _BTPdefaultTemplate = {
+                                    elements  = [
+                                        "gaDisplayName",
+                                        "saSubdomain",
+                                    ]
+                                    separator = "_"
+                                }
+                                description         = "Cloud Foundry organization name"
+                                minLength           = 1
+                                title               = "Org Name"
+                                type                = "string"
+                            }
+                        }
+                        required        = [
+                            "instance_name",
+                        ]
+                        schema          = "http://json-schema.org/draft-07/schema#"
+                        type            = "object"
+                    }
+                }
+            )
+            schema_update        = null
+            service_description  = "An efficient model for cloud-native application delivery"
+            service_display_name = "Cloud Foundry Runtime"
+            service_name         = "cloudfoundry"
+            technical_key        = null
+        },
+    ]
+}
+
+# module.cloudfoundry.data.btp_subaccount_environments.all["shared-services:cf-shared-services"]:
+data "btp_subaccount_environments" "all" {
+    id            = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    subaccount_id = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    values        = [
+        {
+            availability_level   = "ACTIVE"
+            description          = "Create organization in cloud foundry - trial based"
+            environment_type     = "cloudfoundry"
+            landscape_label      = "cf-us10-001"
+            plan_name            = "trial"
+            plan_updateable      = false
+            schema_create        = jsonencode(
+                {
+                    parameters = {
+                        _show_form_view = true
+                        properties      = {
+                            instance_name = {
+                                _BTPdefaultTemplate = {
+                                    elements  = [
+                                        "gaDisplayName",
+                                        "saSubdomain",
+                                    ]
+                                    separator = "_"
+                                }
+                                description         = "Cloud Foundry organization name"
+                                minLength           = 1
+                                title               = "Org Name"
+                                type                = "string"
+                            }
+                        }
+                        required        = [
+                            "instance_name",
+                        ]
+                        schema          = "http://json-schema.org/draft-07/schema#"
+                        type            = "object"
+                    }
+                }
+            )
+            schema_update        = null
+            service_description  = "An efficient model for cloud-native application delivery"
+            service_display_name = "Cloud Foundry Runtime"
+            service_name         = "cloudfoundry"
+            technical_key        = null
+        },
+    ]
+}
+
+# module.cloudfoundry.btp_subaccount_environment_instance.this["sales-production:cf-sales-prod"]:
+resource "btp_subaccount_environment_instance" "this" {
+    broker_id        = "985B006B-820E-40BF-AC53-AB3D2B86C294"
+    created_date     = "2026-06-14T07:32:14Z"
+    custom_labels    = {}
+    dashboard_url    = ""
+    description      = ""
+    environment_type = "cloudfoundry"
+    id               = "4C502552-1CE0-4EF6-820C-F53BBDB7B24A"
+    labels           = jsonencode(
+        {
+            "API Endpoint"     = "https://api.cf.us10-001.hana.ondemand.com"
+            "Org ID"           = "5af0d152-2a96-44e0-9b07-00851c64f28c"
+            "Org Memory Limit" = "0MB"
+            "Org Name"         = "cf-sales-prod-org"
+        }
+    )
+    landscape_label  = "cf-us10-001"
+    last_modified    = "2026-06-14T07:32:19Z"
+    name             = "cf-sales-prod"
+    operation        = "provision"
+    parameters       = jsonencode(
+        {
+            instance_name = "cf-sales-prod-org"
+        }
+    )
+    plan_id          = "267b5620-3011-4c48-8e56-8d103876275b"
+    plan_name        = "trial"
+    platform_id      = "5af0d152-2a96-44e0-9b07-00851c64f28c"
+    service_id       = "fa31b750-375f-4268-bee1-604811a89fd9"
+    service_name     = "cloudfoundry"
+    state            = "OK"
+    subaccount_id    = "05443b24-09ca-4539-93c5-a8568a929457"
+    tenant_id        = "05443b24-09ca-4539-93c5-a8568a929457"
+    timeouts         = {
+        create = "1h"
+        delete = "30m"
+        update = "30m"
+    }
+    type             = "Provision"
+}
+
+# module.cloudfoundry.btp_subaccount_environment_instance.this["shared-services:cf-shared-services"]:
+resource "btp_subaccount_environment_instance" "this" {
+    broker_id        = "985B006B-820E-40BF-AC53-AB3D2B86C294"
+    created_date     = "2026-06-14T22:17:58Z"
+    custom_labels    = {}
+    dashboard_url    = ""
+    description      = ""
+    environment_type = "cloudfoundry"
+    id               = "B6B2317C-6BD0-4EA7-B3E8-25F243FD90D6"
+    labels           = jsonencode(
+        {
+            "API Endpoint"     = "https://api.cf.us10-001.hana.ondemand.com"
+            "Org ID"           = "ac9f4e28-e480-4dcc-b9b6-11cf45672171"
+            "Org Memory Limit" = "0MB"
+            "Org Name"         = "cf-shared-services-org"
+        }
+    )
+    landscape_label  = "cf-us10-001"
+    last_modified    = "2026-06-14T22:18:03Z"
+    name             = "cf-shared-services"
+    operation        = "provision"
+    parameters       = jsonencode(
+        {
+            instance_name = "cf-shared-services-org"
+        }
+    )
+    plan_id          = "267b5620-3011-4c48-8e56-8d103876275b"
+    plan_name        = "trial"
+    platform_id      = "ac9f4e28-e480-4dcc-b9b6-11cf45672171"
+    service_id       = "fa31b750-375f-4268-bee1-604811a89fd9"
+    service_name     = "cloudfoundry"
+    state            = "OK"
+    subaccount_id    = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    tenant_id        = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    timeouts         = {
+        create = "1h"
+        delete = "30m"
+        update = "30m"
+    }
+    type             = "Provision"
+}
+
+# module.cloudfoundry.terraform_data.cf_landscape_label["sales-production:cf-sales-prod"]:
+resource "terraform_data" "cf_landscape_label" {
+    id     = "695d3721-8bf1-5b32-1615-1c79eb74e086"
+    input  = "cf-us10-001"
+    output = "cf-us10-001"
+}
+
+# module.cloudfoundry.terraform_data.cf_landscape_label["shared-services:cf-shared-services"]:
+resource "terraform_data" "cf_landscape_label" {
+    id     = "9fb8229c-1b70-8440-8371-b1ae6d6f046f"
+    input  = "cf-us10-001"
+    output = "cf-us10-001"
+}
+
+
+# module.cloudfoundry_org_us10.cloudfoundry_org_role.org_auditors["cf-sales-prod-org:auditor:atash.das@gmail.com"]:
+resource "cloudfoundry_org_role" "org_auditors" {
+    created_at = "2026-06-14T22:18:35Z"
+    id         = "6d0199bf-cb3a-46e9-ae77-9f9af83258ab"
+    org        = "5af0d152-2a96-44e0-9b07-00851c64f28c"
+    origin     = "sap.ids"
+    type       = "organization_auditor"
+    updated_at = "2026-06-14T22:18:35Z"
+    user       = "10a6bc00-2c66-4752-a75a-f02e0a5ad1d4"
+    username   = "atash.das@gmail.com"
+}
+
+
+# module.cloudfoundry_space_us10.cloudfoundry_space.space["cf-sales-prod-org:sales-prod-one"]:
+resource "cloudfoundry_space" "space" {
+    allow_ssh  = true
+    created_at = "2026-06-14T07:32:52Z"
+    id         = "60baa939-e28b-423d-bc83-bba7cfaed43f"
+    labels     = {
+        "name" = "sales-prod-one"
+    }
+    name       = "sales-prod-one"
+    org        = "5af0d152-2a96-44e0-9b07-00851c64f28c"
+    updated_at = "2026-06-14T07:32:52Z"
+}
+
+# module.cloudfoundry_space_us10.cloudfoundry_space.space["cf-shared-services-org:shared-services-one"]:
+resource "cloudfoundry_space" "space" {
+    allow_ssh  = true
+    created_at = "2026-06-14T22:18:35Z"
+    id         = "60ce274c-4947-48ea-9ba4-b2f9baea23e1"
+    labels     = {
+        "name" = "shared-services-one"
+    }
+    name       = "shared-services-one"
+    org        = "ac9f4e28-e480-4dcc-b9b6-11cf45672171"
+    updated_at = "2026-06-14T22:18:35Z"
+}
+
+# module.cloudfoundry_space_us10.cloudfoundry_space_role.space_auditors["cf-sales-prod-org:sales-prod-one:auditor:atash.das@gmail.com"]:
+resource "cloudfoundry_space_role" "space_auditors" {
+    created_at = "2026-06-14T07:32:52Z"
+    id         = "69eea3bb-e2bc-46eb-81a5-d053753b902c"
+    origin     = "sap.ids"
+    space      = "60baa939-e28b-423d-bc83-bba7cfaed43f"
+    type       = "space_auditor"
+    updated_at = "2026-06-14T07:32:52Z"
+    user       = "10a6bc00-2c66-4752-a75a-f02e0a5ad1d4"
+    username   = "atash.das@gmail.com"
+}
+
+# module.cloudfoundry_space_us10.cloudfoundry_space_role.space_developers["cf-sales-prod-org:sales-prod-one:developer:atash.das@gmail.com"]:
+resource "cloudfoundry_space_role" "space_developers" {
+    created_at = "2026-06-14T07:32:52Z"
+    id         = "29d241c0-9408-4633-9c49-34f869ad2d48"
+    origin     = "sap.ids"
+    space      = "60baa939-e28b-423d-bc83-bba7cfaed43f"
+    type       = "space_developer"
+    updated_at = "2026-06-14T07:32:52Z"
+    user       = "10a6bc00-2c66-4752-a75a-f02e0a5ad1d4"
+    username   = "atash.das@gmail.com"
+}
+
+# module.cloudfoundry_space_us10.cloudfoundry_space_role.space_managers["cf-sales-prod-org:sales-prod-one:manager:atash.das@gmail.com"]:
+resource "cloudfoundry_space_role" "space_managers" {
+    created_at = "2026-06-14T07:32:52Z"
+    id         = "157b8abf-2d7b-466b-a511-8b2004e6e2e1"
+    origin     = "sap.ids"
+    space      = "60baa939-e28b-423d-bc83-bba7cfaed43f"
+    type       = "space_manager"
+    updated_at = "2026-06-14T07:32:52Z"
+    user       = "10a6bc00-2c66-4752-a75a-f02e0a5ad1d4"
+    username   = "atash.das@gmail.com"
+}
+
+# module.cloudfoundry_space_us10.cloudfoundry_space_role.space_managers["cf-shared-services-org:shared-services-one:manager:atash.das@gmail.com"]:
+resource "cloudfoundry_space_role" "space_managers" {
+    created_at = "2026-06-14T22:18:36Z"
+    id         = "19269b38-d158-45d1-8275-d4d9a66c444b"
+    origin     = "sap.ids"
+    space      = "60ce274c-4947-48ea-9ba4-b2f9baea23e1"
+    type       = "space_manager"
+    updated_at = "2026-06-14T22:18:36Z"
+    user       = "10a6bc00-2c66-4752-a75a-f02e0a5ad1d4"
+    username   = "atash.das@gmail.com"
+}
+
+# module.cloudfoundry_space_us10.cloudfoundry_space_role.space_supporters["cf-sales-prod-org:sales-prod-one:supporter:atash.das@gmail.com"]:
+resource "cloudfoundry_space_role" "space_supporters" {
+    created_at = "2026-06-14T07:32:52Z"
+    id         = "5ca85c67-e7fe-49b7-b761-2f5b396cf888"
+    origin     = "sap.ids"
+    space      = "60baa939-e28b-423d-bc83-bba7cfaed43f"
+    type       = "space_supporter"
+    updated_at = "2026-06-14T07:32:52Z"
+    user       = "10a6bc00-2c66-4752-a75a-f02e0a5ad1d4"
+    username   = "atash.das@gmail.com"
+}
+
+
+# module.directory.btp_directory.l1["amer"]:
+resource "btp_directory" "l1" {
+    created_by    = "atash.das@gmail.com"
+    created_date  = "2026-06-14T23:04:35Z"
+    description   = "Directory for Americas region"
+    features      = [
+        "DEFAULT",
+    ]
+    id            = "fd29f1bd-0860-44cd-bb83-0509d816ccc9"
+    labels        = {
+        "costcenter" = [
+            "12345678",
+        ]
+        "name"       = [
+            "amer",
+        ]
+        "owner"      = [
+            "atash.das@gmail.com",
+        ]
+        "project"    = [
+            "Sales BTP Landscape",
+        ]
+        "scope"      = [
+            "Americas operation",
+        ]
+    }
+    last_modified = "2026-06-14T23:04:35Z"
+    name          = "amer"
+    parent_id     = "c37f4d0a-51ee-453a-92cb-ba5b1b0ffddc"
+    state         = "OK"
+    subdomain     = null
+}
+
+# module.directory.btp_directory.l1["apac"]:
+resource "btp_directory" "l1" {
+    created_by    = "atash.das@gmail.com"
+    created_date  = "2026-06-14T23:04:34Z"
+    description   = "Directory for Asia Pacific region"
+    features      = [
+        "DEFAULT",
+    ]
+    id            = "b412f65b-309a-470a-96a6-45e0a4a089cd"
+    labels        = {
+        "costcenter" = [
+            "12345678",
+        ]
+        "name"       = [
+            "apac",
+        ]
+        "owner"      = [
+            "atash.das@gmail.com",
+        ]
+        "project"    = [
+            "Sales BTP Landscape",
+        ]
+        "scope"      = [
+            "Asia Pacific operation",
+        ]
+    }
+    last_modified = "2026-06-14T23:04:34Z"
+    name          = "apac"
+    parent_id     = "c37f4d0a-51ee-453a-92cb-ba5b1b0ffddc"
+    state         = "OK"
+    subdomain     = null
+}
+
+# module.directory.btp_directory.l1["emea"]:
+resource "btp_directory" "l1" {
+    created_by    = "atash.das@gmail.com"
+    created_date  = "2026-06-14T23:04:34Z"
+    description   = "Directory for EMEA region"
+    features      = [
+        "DEFAULT",
+    ]
+    id            = "48a58dba-5040-4ea6-9002-49119edd0636"
+    labels        = {
+        "costcenter" = [
+            "12345678",
+        ]
+        "name"       = [
+            "emea",
+        ]
+        "owner"      = [
+            "atash.das@gmail.com",
+        ]
+        "project"    = [
+            "Sales BTP Landscape",
+        ]
+        "scope"      = [
+            "EMEA operation",
+        ]
+    }
+    last_modified = "2026-06-14T23:04:34Z"
+    name          = "emea"
+    parent_id     = "c37f4d0a-51ee-453a-92cb-ba5b1b0ffddc"
+    state         = "OK"
+    subdomain     = null
+}
+
+# module.directory.btp_directory.l2["amer>finance"]:
+resource "btp_directory" "l2" {
+    created_by    = "atash.das@gmail.com"
+    created_date  = "2026-06-14T23:04:42Z"
+    description   = "Directory for Finance Division"
+    features      = [
+        "DEFAULT",
+    ]
+    id            = "329a4f2e-f124-4b3c-a97b-9309f813dde3"
+    labels        = {
+        "costcenter" = [
+            "12345678",
+        ]
+        "name"       = [
+            "finance",
+        ]
+        "owner"      = [
+            "atash.das@gmail.com",
+        ]
+        "project"    = [
+            "Sales BTP Landscape",
+        ]
+        "scope"      = [
+            "Finance operation",
+        ]
+    }
+    last_modified = "2026-06-14T23:04:42Z"
+    name          = "finance"
+    parent_id     = "fd29f1bd-0860-44cd-bb83-0509d816ccc9"
+    state         = "OK"
+    subdomain     = null
+}
+
+# module.directory.btp_directory.l2["amer>hr"]:
+resource "btp_directory" "l2" {
+    created_by    = "atash.das@gmail.com"
+    created_date  = "2026-06-14T23:04:42Z"
+    description   = "Directory for HR Division"
+    features      = [
+        "DEFAULT",
+    ]
+    id            = "654292aa-abb3-4870-a925-17407b080e60"
+    labels        = {
+        "costcenter" = [
+            "12345678",
+        ]
+        "name"       = [
+            "hr",
+        ]
+        "owner"      = [
+            "atash.das@gmail.com",
+        ]
+        "project"    = [
+            "Sales BTP Landscape",
+        ]
+        "scope"      = [
+            "HR operation",
+        ]
+    }
+    last_modified = "2026-06-14T23:04:42Z"
+    name          = "hr"
+    parent_id     = "fd29f1bd-0860-44cd-bb83-0509d816ccc9"
+    state         = "OK"
+    subdomain     = null
+}
+
+# module.directory.btp_directory.l2["amer>sales"]:
+resource "btp_directory" "l2" {
+    created_by    = "atash.das@gmail.com"
+    created_date  = "2026-06-14T23:21:02Z"
+    description   = "Directory for Sales Division"
+    features      = [
+        "DEFAULT",
+    ]
+    id            = "823465b7-3bfc-4220-85b1-df46bc2131cc"
+    labels        = {
+        "costcenter" = [
+            "12345678",
+        ]
+        "name"       = [
+            "sales",
+        ]
+        "owner"      = [
+            "atash.das@gmail.com",
+        ]
+        "project"    = [
+            "Sales BTP Landscape",
+        ]
+        "scope"      = [
+            "Sales operation",
+        ]
+    }
+    last_modified = "2026-06-14T23:21:02Z"
+    name          = "sales"
+    parent_id     = "fd29f1bd-0860-44cd-bb83-0509d816ccc9"
+    state         = "OK"
+    subdomain     = null
+}
+
+
+# module.identity_services.btp_subaccount_entitlement.service_application["shared-services:identity-default-service"]:
+resource "btp_subaccount_entitlement" "service_application" {
+    category               = "APPLICATION"
+    created_date           = "2026-06-14T05:00:09Z"
+    id                     = "sap-identity-services-onboarding-default"
+    last_modified          = "2026-06-14T06:52:14Z"
+    plan_id                = "sap-identity-services-onboarding-default"
+    plan_name              = "default"
+    plan_unique_identifier = "sap-identity-services-onboarding-default"
+    service_name           = "sap-identity-services-onboarding"
+    state                  = "PROCESSING_FAILED"
+    subaccount_id          = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+}
+
+# module.identity_services.btp_subaccount_entitlement.service_application["shared-services:transport-management-standard-service"]:
+resource "btp_subaccount_entitlement" "service_application" {
+    category               = "APPLICATION"
+    created_date           = "2026-06-14T05:00:08Z"
+    id                     = "alm-ts-lite"
+    last_modified          = "2026-06-14T06:52:14Z"
+    plan_id                = "alm-ts-lite"
+    plan_name              = "lite"
+    plan_unique_identifier = "alm-ts-lite"
+    service_name           = "alm-ts"
+    state                  = "PROCESSING_FAILED"
+    subaccount_id          = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+}
+
+# module.identity_services.btp_subaccount_subscription.service_application["shared-services:identity-default-service"]:
+resource "btp_subaccount_subscription" "service_application" {
+    app_id                      = "sap-identity-services-onboarding!t6878"
+    app_name                    = "sap-identity-services-onboarding"
+    authentication_provider     = "XSUAA"
+    category                    = "SaaS"
+    commercial_app_name         = "sap-identity-services-onboarding"
+    created_date                = "2026-06-14T05:00:24Z"
+    customer_developed          = false
+    description                 = "SAP Cloud Identity Services provide basic capabilities for user authentication."
+    display_name                = "Cloud Identity Services"
+    formation_solution_name     = ""
+    globalaccount_id            = "SAPCloudIdentityServices"
+    id                          = "0d131a9c-939b-48a9-ae37-1b3cbd093057"
+    last_modified               = "2026-06-14T05:01:28Z"
+    parameters                  = jsonencode(
+        {
+            cloud_service = "TEST"
+        }
+    )
+    plan_name                   = "default"
+    platform_entity_id          = ""
+    quota                       = 1
+    state                       = "SUBSCRIBED"
+    subaccount_id               = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    subscribed_subaccount_id    = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    subscribed_tenant_id        = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    subscription_url            = "https://a626a58ka.trial-accounts.ondemand.com/admin"
+    supports_parameters_updates = false
+    supports_plan_updates       = false
+    tenant_id                   = "3d08ca17-79f8-4617-abe7-54c3cc42b3f3"
+    timeouts                    = {
+        create = "30m"
+    }
+}
+
+# module.identity_services.btp_subaccount_subscription.service_application["shared-services:transport-management-standard-service"]:
+resource "btp_subaccount_subscription" "service_application" {
+    app_id                      = "alm-ts!t1603"
+    app_name                    = "alm-ts"
+    authentication_provider     = "XSUAA"
+    category                    = ""
+    commercial_app_name         = "alm-ts"
+    created_date                = "2026-06-14T05:00:23Z"
+    customer_developed          = false
+    description                 = "SAP Cloud Transport Management service lets you manage software deliverables between accounts of different environments (such as Neo and Cloud Foundry), by transporting them across various runtimes. This includes application artifacts as well as their respective application-specific content."
+    display_name                = "Cloud Transport Management"
+    formation_solution_name     = ""
+    globalaccount_id            = "dctms"
+    id                          = "17acec0e-8c3d-429d-bb16-b0ae3b9560e6"
+    last_modified               = "2026-06-14T05:00:49Z"
+    parameters                  = jsonencode({})
+    plan_name                   = "lite"
+    platform_entity_id          = "074be299-bf6d-4cdd-b1af-2cb9f72fdea6"
+    quota                       = 1
+    state                       = "SUBSCRIBED"
+    subaccount_id               = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    subscribed_subaccount_id    = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    subscribed_tenant_id        = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    subscription_url            = "https://shared-services.ts.cfapps.us10.hana.ondemand.com"
+    supports_parameters_updates = false
+    supports_plan_updates       = true
+    tenant_id                   = "9dd2480a-f627-46bf-9c34-f182768d6f94"
+    timeouts                    = {
+        create = "30m"
+    }
+}
+
+
+# module.other_services.btp_subaccount_entitlement.service_application["sales-development:sap-build-code-free-service"]:
+resource "btp_subaccount_entitlement" "service_application" {
+    category               = "APPLICATION"
+    created_date           = "2026-06-14T06:38:28Z"
+    id                     = "build-code-free"
+    last_modified          = "2026-06-14T06:38:39Z"
+    plan_id                = "build-code-free"
+    plan_name              = "free"
+    plan_unique_identifier = "build-code-free"
+    service_name           = "build-code"
+    state                  = "OK"
+    subaccount_id          = "89e0de7d-d9f1-45dd-81de-4372b7c6aa04"
+}
+
+# module.other_services.btp_subaccount_entitlement.service_application["sales-production:build-workzone-standard-service"]:
+resource "btp_subaccount_entitlement" "service_application" {
+    category               = "APPLICATION"
+    created_date           = "2026-06-14T05:01:49Z"
+    id                     = "SAPLaunchpad-standard"
+    last_modified          = "2026-06-14T05:02:03Z"
+    plan_id                = "SAPLaunchpad-standard"
+    plan_name              = "standard"
+    plan_unique_identifier = "SAPLaunchpad-standard"
+    service_name           = "SAPLaunchpad"
+    state                  = "OK"
+    subaccount_id          = "05443b24-09ca-4539-93c5-a8568a929457"
+}
+
+# module.other_services.btp_subaccount_entitlement.service_application["sales-production:process-automation-free-service"]:
+resource "btp_subaccount_entitlement" "service_application" {
+    category               = "APPLICATION"
+    created_date           = "2026-06-14T05:01:49Z"
+    id                     = "processautomation-free"
+    last_modified          = "2026-06-14T05:02:03Z"
+    plan_id                = "processautomation-free"
+    plan_name              = "free"
+    plan_unique_identifier = "processautomation-free"
+    service_name           = "process-automation"
+    state                  = "OK"
+    subaccount_id          = "05443b24-09ca-4539-93c5-a8568a929457"
+}
+
+# module.other_services.btp_subaccount_role_collection_assignment.user_role_collection_assignment["sales-production:build-workzone-standard-service:Launchpad_Admin:atash.das@gmail.com"]:
+resource "btp_subaccount_role_collection_assignment" "user_role_collection_assignment" {
+    id                   = "05443b24-09ca-4539-93c5-a8568a929457,Launchpad_Admin,atash.das@gmail.com"
+    origin               = "ldap"
+    role_collection_name = "Launchpad_Admin"
+    subaccount_id        = "05443b24-09ca-4539-93c5-a8568a929457"
+    user_name            = "atash.das@gmail.com"
+}
+
+# module.other_services.btp_subaccount_role_collection_assignment.user_role_collection_assignment["sales-production:build-workzone-standard-service:Launchpad_Admin_Read_Only:atash.das@gmail.com"]:
+resource "btp_subaccount_role_collection_assignment" "user_role_collection_assignment" {
+    id                   = "05443b24-09ca-4539-93c5-a8568a929457,Launchpad_Admin_Read_Only,atash.das@gmail.com"
+    origin               = "ldap"
+    role_collection_name = "Launchpad_Admin_Read_Only"
+    subaccount_id        = "05443b24-09ca-4539-93c5-a8568a929457"
+    user_name            = "atash.das@gmail.com"
+}
+
+# module.other_services.btp_subaccount_role_collection_assignment.user_role_collection_assignment["sales-production:build-workzone-standard-service:Launchpad_Advanced_Theming:atash.das@gmail.com"]:
+resource "btp_subaccount_role_collection_assignment" "user_role_collection_assignment" {
+    id                   = "05443b24-09ca-4539-93c5-a8568a929457,Launchpad_Advanced_Theming,atash.das@gmail.com"
+    origin               = "ldap"
+    role_collection_name = "Launchpad_Advanced_Theming"
+    subaccount_id        = "05443b24-09ca-4539-93c5-a8568a929457"
+    user_name            = "atash.das@gmail.com"
+}
+
+# module.other_services.btp_subaccount_role_collection_assignment.user_role_collection_assignment["sales-production:build-workzone-standard-service:Launchpad_External_User:atash.das@gmail.com"]:
+resource "btp_subaccount_role_collection_assignment" "user_role_collection_assignment" {
+    id                   = "05443b24-09ca-4539-93c5-a8568a929457,Launchpad_External_User,atash.das@gmail.com"
+    origin               = "ldap"
+    role_collection_name = "Launchpad_External_User"
+    subaccount_id        = "05443b24-09ca-4539-93c5-a8568a929457"
+    user_name            = "atash.das@gmail.com"
+}
+
+# module.other_services.btp_subaccount_subscription.service_application["sales-development:sap-build-code-free-service"]:
+resource "btp_subaccount_subscription" "service_application" {
+    app_id                      = "procode-manager-prod-us10!t208409"
+    app_name                    = "build-code"
+    authentication_provider     = "XSUAA"
+    category                    = "Application Development and Automation"
+    commercial_app_name         = "build-code"
+    created_date                = "2026-06-14T06:39:04Z"
+    customer_developed          = false
+    description                 = "SAP Build Code leverages ready-to-use SAP services and generative AI capabilities to simplify the development of SAPUI5, SAP Fiori, and CAP applications running on SAP BTP using the Cloud Foundry runtime."
+    display_name                = "SAP Build Code"
+    formation_solution_name     = ""
+    globalaccount_id            = "698a0962-7b1c-4d84-99de-180388ceedde"
+    id                          = "979e3e45-70d1-4a2f-adbe-e4b14f7676a3"
+    last_modified               = "2026-06-14T06:39:31Z"
+    parameters                  = jsonencode({})
+    plan_name                   = "free"
+    platform_entity_id          = ""
+    quota                       = 1
+    state                       = "SUBSCRIBED"
+    subaccount_id               = "89e0de7d-d9f1-45dd-81de-4372b7c6aa04"
+    subscribed_subaccount_id    = "89e0de7d-d9f1-45dd-81de-4372b7c6aa04"
+    subscribed_tenant_id        = "89e0de7d-d9f1-45dd-81de-4372b7c6aa04"
+    subscription_url            = "https://sales-development.us10.build.cloud.sap"
+    supports_parameters_updates = false
+    supports_plan_updates       = true
+    tenant_id                   = "cbe9ac38-a660-4d50-8117-1bcf98ff2e6c"
+    timeouts                    = {
+        create = "30m"
+    }
+}
+
+# module.other_services.btp_subaccount_subscription.service_application["sales-production:build-workzone-standard-service"]:
+resource "btp_subaccount_subscription" "service_application" {
+    app_id                      = "e573fd61-f3ad-4bbb-895d-40848e64dbf6"
+    app_name                    = "SAPLaunchpadSMS"
+    authentication_provider     = "IAS"
+    category                    = "SaaS Applications"
+    commercial_app_name         = "SAPLaunchpad"
+    created_date                = "2026-06-14T06:39:02Z"
+    customer_developed          = false
+    description                 = "Provides users with a central point of access to applications from different sources."
+    display_name                = "SAP Build Work Zone, standard edition"
+    formation_solution_name     = ""
+    globalaccount_id            = "SA0225001210"
+    id                          = "6d7f8edf-4bdc-4f01-8c08-38266c7956b6"
+    last_modified               = "2026-06-14T06:40:31Z"
+    parameters                  = jsonencode({})
+    plan_name                   = "standard"
+    platform_entity_id          = ""
+    quota                       = 1
+    state                       = "SUBSCRIBED"
+    subaccount_id               = "05443b24-09ca-4539-93c5-a8568a929457"
+    subscribed_subaccount_id    = "05443b24-09ca-4539-93c5-a8568a929457"
+    subscribed_tenant_id        = "05443b24-09ca-4539-93c5-a8568a929457"
+    subscription_url            = "https://sales-production.dt.launchpad.cfapps.us10.hana.ondemand.com"
+    supports_parameters_updates = false
+    supports_plan_updates       = true
+    tenant_id                   = ""
+    timeouts                    = {
+        create = "30m"
+    }
+}
+
+# module.other_services.btp_subaccount_subscription.service_application["sales-production:process-automation-free-service"]:
+resource "btp_subaccount_subscription" "service_application" {
+    app_id                      = "xsuaa!b49390"
+    app_name                    = "process-automation"
+    authentication_provider     = "XSUAA"
+    category                    = "No Code/Low Code Suite"
+    commercial_app_name         = "process-automation"
+    created_date                = "2026-06-14T06:39:00Z"
+    customer_developed          = false
+    description                 = "SAP Build Process Automation combines capabilities from SAP Workflow Management and SAP Intelligent RPA with a powerful, yet intuitive no-code development experience. SAP Build Process Automation enables business users and technologists to become citizen developers. With powerful yet intuitive low-code and no-code capabilities, the solution supports you in driving automation by tapping into the expertise of citizen developers."
+    display_name                = "SAP Build Process Automation"
+    formation_solution_name     = ""
+    globalaccount_id            = "af392aeb-c0e7-4587-beb5-608ff32c6b8f"
+    id                          = "1ce220ef-7a62-4859-b1c8-cde9e24464e2"
+    last_modified               = "2026-06-14T06:46:27Z"
+    parameters                  = jsonencode({})
+    plan_name                   = "free"
+    platform_entity_id          = ""
+    quota                       = 1
+    state                       = "SUBSCRIBED"
+    subaccount_id               = "05443b24-09ca-4539-93c5-a8568a929457"
+    subscribed_subaccount_id    = "05443b24-09ca-4539-93c5-a8568a929457"
+    subscribed_tenant_id        = "05443b24-09ca-4539-93c5-a8568a929457"
+    subscription_url            = "https://sales-production.us10.build.cloud.sap"
+    supports_parameters_updates = false
+    supports_plan_updates       = true
+    tenant_id                   = "f1623d43-fe95-4991-a1d7-ce80dd88cfde"
+    timeouts                    = {
+        create = "30m"
+    }
+}
+
+
+# module.subaccount.data.btp_globalaccount.this:
+data "btp_globalaccount" "this" {
+    commercial_model  = "Subscription"
+    consumption_based = false
+    contract_status   = "ACTIVE"
+    created_date      = "2026-04-28T10:10:55Z"
+    description       = null
+    geo_access        = "STANDARD"
+    id                = "c37f4d0a-51ee-453a-92cb-ba5b1b0ffddc"
+    last_modified     = "2026-06-14T01:23:43Z"
+    license_type      = "TRIAL"
+    name              = "41ad29aetrial"
+    origin            = null
+    renewal_date      = "2026-06-27T10:10:55Z"
+    state             = "OK"
+    subdomain         = "41ad29aetrial-ga"
+}
+
+# module.subaccount.btp_subaccount.this["sales-development"]:
+resource "btp_subaccount" "this" {
+    beta_enabled    = true
+    contract_status = "ACTIVE"
+    created_by      = "atash.das@gmail.com"
+    created_date    = "2026-06-14T03:07:48Z"
+    description     = "DEV Environment for Sales Division"
+    id              = "89e0de7d-d9f1-45dd-81de-4372b7c6aa04"
+    labels          = {
+        "costcenter" = [
+            "12345678",
+        ]
+        "name"       = [
+            "sales-development",
+        ]
+        "owner"      = [
+            "atash.das@gmail.com",
+        ]
+        "project"    = [
+            "Sales BTP Landscape",
+        ]
+        "role"       = [
+            "dev",
+        ]
+    }
+    last_modified   = "2026-06-14T23:22:21Z"
+    name            = "sales-development"
+    parent_features = [
+        "DEFAULT",
+    ]
+    parent_id       = "823465b7-3bfc-4220-85b1-df46bc2131cc"
+    region          = "us10"
+    state           = "OK"
+    subdomain       = "sales-development"
+    usage           = "NOT_USED_FOR_PRODUCTION"
+}
+
+# module.subaccount.btp_subaccount.this["sales-production"]:
+resource "btp_subaccount" "this" {
+    beta_enabled    = true
+    contract_status = "ACTIVE"
+    created_by      = "atash.das@gmail.com"
+    created_date    = "2026-06-14T03:07:49Z"
+    description     = "PROD Environment for Sales Division"
+    id              = "05443b24-09ca-4539-93c5-a8568a929457"
+    labels          = {
+        "costcenter" = [
+            "12345678",
+        ]
+        "name"       = [
+            "sales-production",
+        ]
+        "owner"      = [
+            "atash.das@gmail.com",
+        ]
+        "project"    = [
+            "Sales BTP Landscape",
+        ]
+        "role"       = [
+            "test-prod",
+        ]
+    }
+    last_modified   = "2026-06-14T23:23:25Z"
+    name            = "sales-production"
+    parent_features = [
+        "DEFAULT",
+    ]
+    parent_id       = "823465b7-3bfc-4220-85b1-df46bc2131cc"
+    region          = "us10"
+    state           = "OK"
+    subdomain       = "sales-production"
+    usage           = "NOT_USED_FOR_PRODUCTION"
+}
+
+# module.subaccount.btp_subaccount.this["shared-services"]:
+resource "btp_subaccount" "this" {
+    beta_enabled    = true
+    contract_status = "ACTIVE"
+    created_by      = null
+    created_date    = "2026-06-14T03:09:45Z"
+    description     = "Account hosting Shared Services for Landscape"
+    id              = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    labels          = {
+        "costcenter" = [
+            "12345678",
+        ]
+        "name"       = [
+            "shared-services",
+        ]
+        "owner"      = [
+            "atash.das@gmail.com",
+        ]
+        "project"    = [
+            "Sales BTP Landscape",
+        ]
+        "role"       = [
+            "shared",
+        ]
+        "scope"      = [
+            "landscape",
+        ]
+    }
+    last_modified   = "2026-06-14T03:10:27Z"
+    name            = "shared-services"
+    parent_id       = "c37f4d0a-51ee-453a-92cb-ba5b1b0ffddc"
+    region          = "us10"
+    state           = "OK"
+    subdomain       = "shared-services"
+    usage           = "NOT_USED_FOR_PRODUCTION"
+}
+
+# module.subaccount.btp_subaccount_role_collection_assignment.user_role_collection_assignment["sales-development:Destination Administrator:atash.das@gmail.com"]:
+resource "btp_subaccount_role_collection_assignment" "user_role_collection_assignment" {
+    id                   = "89e0de7d-d9f1-45dd-81de-4372b7c6aa04,Destination Administrator,atash.das@gmail.com"
+    origin               = "ldap"
+    role_collection_name = "Destination Administrator"
+    subaccount_id        = "89e0de7d-d9f1-45dd-81de-4372b7c6aa04"
+    user_name            = "atash.das@gmail.com"
+}
+
+# module.subaccount.btp_subaccount_role_collection_assignment.user_role_collection_assignment["sales-production:Destination Administrator:atash.das@gmail.com"]:
+resource "btp_subaccount_role_collection_assignment" "user_role_collection_assignment" {
+    id                   = "05443b24-09ca-4539-93c5-a8568a929457,Destination Administrator,atash.das@gmail.com"
+    origin               = "ldap"
+    role_collection_name = "Destination Administrator"
+    subaccount_id        = "05443b24-09ca-4539-93c5-a8568a929457"
+    user_name            = "atash.das@gmail.com"
+}
+
+# module.subaccount.btp_subaccount_role_collection_assignment.user_role_collection_assignment["shared-services:Destination Administrator:atash.das@gmail.com"]:
+resource "btp_subaccount_role_collection_assignment" "user_role_collection_assignment" {
+    id                   = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87,Destination Administrator,atash.das@gmail.com"
+    origin               = "ldap"
+    role_collection_name = "Destination Administrator"
+    subaccount_id        = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    user_name            = "atash.das@gmail.com"
+}
+
+# module.subaccount.btp_subaccount_role_collection_assignment.user_role_collection_assignment["shared-services:Subaccount Service Administrator:atash.das@gmail.com"]:
+resource "btp_subaccount_role_collection_assignment" "user_role_collection_assignment" {
+    id                   = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87,Subaccount Service Administrator,atash.das@gmail.com"
+    origin               = "ldap"
+    role_collection_name = "Subaccount Service Administrator"
+    subaccount_id        = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+    user_name            = "atash.das@gmail.com"
+}
+
+# module.subaccount.random_uuid.uuid:
+resource "random_uuid" "uuid" {
+    id     = "a7dcaba6-4f8b-488a-19d4-8494447cc083"
+    result = "a7dcaba6-4f8b-488a-19d4-8494447cc083"
+}
+
+
+Outputs:
+
+account_details = {
+    sales-development = {
+        created_by      = "atash.das@gmail.com"
+        created_date    = "2026-06-14T03:07:48Z"
+        id              = "89e0de7d-d9f1-45dd-81de-4372b7c6aa04"
+        last_modified   = "2026-06-14T23:22:21Z"
+        parent_features = [
+            "DEFAULT",
+        ]
+        state           = "OK"
+        subaccount_url  = "https://account.hanatrial.ondemand.com/trial/#/globalaccount/c37f4d0a-51ee-453a-92cb-ba5b1b0ffddc/subaccount/89e0de7d-d9f1-45dd-81de-4372b7c6aa04"
+        subdomain       = "sales-development"
+    }
+    sales-production  = {
+        created_by      = "atash.das@gmail.com"
+        created_date    = "2026-06-14T03:07:49Z"
+        id              = "05443b24-09ca-4539-93c5-a8568a929457"
+        last_modified   = "2026-06-14T23:23:25Z"
+        parent_features = [
+            "DEFAULT",
+        ]
+        state           = "OK"
+        subaccount_url  = "https://account.hanatrial.ondemand.com/trial/#/globalaccount/c37f4d0a-51ee-453a-92cb-ba5b1b0ffddc/subaccount/05443b24-09ca-4539-93c5-a8568a929457"
+        subdomain       = "sales-production"
+    }
+    shared-services   = {
+        created_by     = null
+        created_date   = "2026-06-14T03:09:45Z"
+        id             = "0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+        last_modified  = "2026-06-14T03:10:27Z"
+        state          = "OK"
+        subaccount_url = "https://account.hanatrial.ondemand.com/trial/#/globalaccount/c37f4d0a-51ee-453a-92cb-ba5b1b0ffddc/subaccount/0055e6fc-96c8-4a30-8f41-bd6f215d5a87"
+        subdomain      = "shared-services"
+    }
+}
+cf_details = {
+    "sales-production:cf-sales-prod"     = {
+        broker_id          = "985B006B-820E-40BF-AC53-AB3D2B86C294"
+        cf_api_url         = "https://api.cf.us10-001.hana.ondemand.com"
+        cf_landscape_label = "cf-us10-001"
+        cf_org_id          = "5af0d152-2a96-44e0-9b07-00851c64f28c"
+        cf_org_name        = "cf-sales-prod-org"
+        created_date       = "2026-06-14T07:32:14Z"
+        custom_labels      = {}
+        dashboard_url      = null
+        description        = null
+        id                 = "4C502552-1CE0-4EF6-820C-F53BBDB7B24A"
+        labels             = jsonencode(
+            {
+                "API Endpoint"     = "https://api.cf.us10-001.hana.ondemand.com"
+                "Org ID"           = "5af0d152-2a96-44e0-9b07-00851c64f28c"
+                "Org Memory Limit" = "0MB"
+                "Org Name"         = "cf-sales-prod-org"
+            }
+        )
+        last_modified      = "2026-06-14T07:32:19Z"
+        operation          = "provision"
+        plan_id            = "267b5620-3011-4c48-8e56-8d103876275b"
+        platform_id        = "5af0d152-2a96-44e0-9b07-00851c64f28c"
+        service_id         = "fa31b750-375f-4268-bee1-604811a89fd9"
+        state              = "OK"
+    }
+    "shared-services:cf-shared-services" = {
+        broker_id          = "985B006B-820E-40BF-AC53-AB3D2B86C294"
+        cf_api_url         = "https://api.cf.us10-001.hana.ondemand.com"
+        cf_landscape_label = "cf-us10-001"
+        cf_org_id          = "ac9f4e28-e480-4dcc-b9b6-11cf45672171"
+        cf_org_name        = "cf-shared-services-org"
+        created_date       = "2026-06-14T22:17:58Z"
+        custom_labels      = {}
+        dashboard_url      = null
+        description        = null
+        id                 = "B6B2317C-6BD0-4EA7-B3E8-25F243FD90D6"
+        labels             = jsonencode(
+            {
+                "API Endpoint"     = "https://api.cf.us10-001.hana.ondemand.com"
+                "Org ID"           = "ac9f4e28-e480-4dcc-b9b6-11cf45672171"
+                "Org Memory Limit" = "0MB"
+                "Org Name"         = "cf-shared-services-org"
+            }
+        )
+        last_modified      = "2026-06-14T22:18:03Z"
+        operation          = "provision"
+        plan_id            = "267b5620-3011-4c48-8e56-8d103876275b"
+        platform_id        = "ac9f4e28-e480-4dcc-b9b6-11cf45672171"
+        service_id         = "fa31b750-375f-4268-bee1-604811a89fd9"
+        state              = "OK"
+    }
+}</pre>
